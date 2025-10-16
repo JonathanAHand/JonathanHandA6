@@ -28,18 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            btnChooseFile = new Button();
             SuspendLayout();
+            // 
+            // btnChooseFile
+            // 
+            btnChooseFile.Location = new Point(72, 52);
+            btnChooseFile.Name = "btnChooseFile";
+            btnChooseFile.Size = new Size(94, 29);
+            btnChooseFile.TabIndex = 0;
+            btnChooseFile.Text = "Choose File";
+            btnChooseFile.UseVisualStyleBackColor = true;
+            btnChooseFile.Click += btnChooseFile_Click;
             // 
             // FileIOForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnChooseFile);
             Name = "FileIOForm";
             Text = "Jonathan Hand Assignment 6";
+            Load += FileIOForm_Load;
+            Click += btnChooseFile_Click;
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Button btnChooseFile;
     }
 }
