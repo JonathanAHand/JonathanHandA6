@@ -53,6 +53,42 @@ namespace JonathanHandA6
         {
 
         }
+
+        private void btnExportCsv_Click(object sender, EventArgs e)
+        {
+            if (Books == null || Books.Count == 0)
+            {
+                MessageBox.Show("No book data to export. Please load a file first.");
+                return;
+            }
+
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.Title = "Save CSV file";
+            saveFile.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    List<string> lines = new List<string>();
+                    lines.Add("Title,Author,Genre,PageLength");
+
+                    foreach (Book b in Books)
+                    {
+                        string line = $"{b.Title},{b.Author},{b.Genre},{b.PageLength}";
+                        lines.Add(line);
+                    }
+
+                    File.WriteAllLines(saveFile.FileName, lines);
+                    MessageBox.Show("CSV file exported successfully!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error saving file: " + ex.Message);
+                }
+            }
+        }
+
     }
 }
 
