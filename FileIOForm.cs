@@ -25,6 +25,8 @@ namespace JonathanHandA6
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.Title = "Choose book data file";
             openFile.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+            openFile.InitialDirectory = Path.Combine(Application.StartupPath, @"..\..\..");
+
 
             DialogResult result = openFile.ShowDialog();
 
@@ -85,6 +87,33 @@ namespace JonathanHandA6
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error saving file: " + ex.Message);
+                }
+            }
+        }
+
+        private void btnExportJson_Click(object sender, EventArgs e)
+        {
+            if (Books == null || Books.Count == 0)
+            {
+                MessageBox.Show("No book data to export. Please load a file first.");
+                return;
+            }
+
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.Title = "Save JSON file";
+            saveFile.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string jsonOutput = JsonSerializer.Serialize(Books, new JsonSerializerOptions { WriteIndented = true });
+                    File.WriteAllText(saveFile.FileName, jsonOutput);
+                    MessageBox.Show("JSON file exported successfully!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error saving JSON file: " + ex.Message);
                 }
             }
         }
