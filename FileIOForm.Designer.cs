@@ -31,6 +31,7 @@
             btnChooseFile = new Button();
             btnExportCsv = new Button();
             btnExportJson = new Button();
+            lblBookCount = new Label();
             SuspendLayout();
             // 
             // btnChooseFile
@@ -63,11 +64,22 @@
             btnExportJson.UseVisualStyleBackColor = true;
             btnExportJson.Click += btnExportJson_Click;
             // 
+            // lblBookCount
+            // 
+            lblBookCount.AutoSize = true;
+            lblBookCount.Location = new Point(79, 327);
+            lblBookCount.Name = "lblBookCount";
+            lblBookCount.Size = new Size(101, 20);
+            lblBookCount.TabIndex = 3;
+            lblBookCount.Text = "Total Books: 0";
+            lblBookCount.Click += label1_Click;
+            // 
             // FileIOForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblBookCount);
             Controls.Add(btnExportJson);
             Controls.Add(btnExportCsv);
             Controls.Add(btnChooseFile);
@@ -76,6 +88,7 @@
             Load += FileIOForm_Load;
             Click += btnChooseFile_Click;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -83,5 +96,6 @@
         private Button btnChooseFile;
         private Button btnExportCsv;
         private Button btnExportJson;
+        private Label lblBookCount;
     }
 }

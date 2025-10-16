@@ -18,6 +18,9 @@ namespace JonathanHandA6
         public FileIOForm()
         {
             InitializeComponent();
+            lblBookCount.Text = "Total Books: 0";
+            lblBookCount.Text = "Total Books: " + Books.Count;
+
         }
 
         private void btnChooseFile_Click(object sender, EventArgs e)
@@ -40,9 +43,10 @@ namespace JonathanHandA6
                     List<Book> loadedBooks = JsonSerializer.Deserialize<List<Book>>(_rawJson);
                     Books = loadedBooks;
 
-
-
                     MessageBox.Show("File loaded successfully. " + Books.Count + " books found.");
+
+                    lblBookCount.Text = "Total Books: " + Books.Count;
+
                 }
                 catch (Exception ex)
                 {
@@ -118,6 +122,10 @@ namespace JonathanHandA6
             }
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
